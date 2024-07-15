@@ -3,84 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlpineJS Counter Widget</title>
+    <title>Counter Widget</title>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.7.1/dist/cdn.min.js" defer></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #971b1b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            background-color: rgb(241, 70, 184);
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            max-width: 800px;
-            padding: 20px;
-            background-color: #19a18f;
-            border-radius: 10px;
-            box-shadow: 0 6px 10px rgba(10, 2, 2, 0.1);
-        }
-        .counter {
+        .counter-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            border: 1px solid #b87575;
-            border-radius: 20px;
-            background-color: #881c6d;
-            transition: transform 0.3s ease;
+            margin-top: 50px;
+            color: rgb(141, 14, 14);
         }
-        .counter:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(241, 222, 222, 0.1);
+
+        .counter {
+            font-size: 2em;
+            margin: 20px;
+            color: brown;
         }
-        .counter p {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #27e4e4;
-        }
-        .btn-container {
-            display: flex;
-            justify-content: space-evenly;
-            width: 100%;
-            margin-top: 25px;
-        }
-        .btn {
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #1b7e2c;
-            color: #fff;
-            border: none;
-            border-radius: 30px;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 7px 9px rgba(230, 117, 117, 0.1);
-        }
-        .btn:hover {
-            background-color: #b30018;
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 40px;
+            color: rgb(255, 0, 55);
         }
     </style>
 </head>
 <body>
 
-    <div class="grid">
-        <div class="counter" x-data="{ count: 0 }">
-            <p x-text="count"></p>
-            <div class="btn-container">
-                <button class="btn" @click="count++">Increment</button>
-                <button class="btn" @click="count--">Decrement</button>
-                <button class="btn" @click="count = 0">Reset</button>
-            </div>
-        </div>
-        
-       
-        </div>
-       
+    <div x-data="{ count: 0, maxCount: 10 }" class="counter-container">
+        <h1>Counter</h1>
+        <div class="counter" x-text="count"></div>
+        <div class="buttons">
+            <button @click="count < maxCount ? count++ : alert('Max value reached')">+</button>
+            <button @click="count > 0 ? count-- : alert('Min value reached')">-</button>
+            <button @click="count = 0">Reset</button>
         </div>
     </div>
 
